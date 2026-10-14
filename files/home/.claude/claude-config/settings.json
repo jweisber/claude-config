@@ -2,7 +2,7 @@
   "theme": "custom:catppuccin-mocha",
   "statusLine": {
     "type": "command",
-    "command": "~/.claude/statusline.py",
+    "command": "python3 ~/.claude/statusline.py",
     "padding": 0,
     "refreshInterval": 2
   },

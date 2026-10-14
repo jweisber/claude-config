@@ -1,0 +1,18 @@
+# A Docker Sandboxes kit (v2 mixin) that sets up this look in a new sandbox:
+#   sbx run claude --kit <path to this repo>
+# files/home/ is copied to /home/agent/ when the sandbox is created; the
+# install command then finishes before Claude Code starts.
+schemaVersion: "2"
+kind: mixin
+name: claude-config
+requires:
+  agent: claude
+setup:
+  install:
+    - command: "HOME=/home/agent PATH=/home/agent/.local/bin:$PATH sh /home/agent/.claude/claude-config/setup.sh"
+      user: "1000"
+      description: "Merge settings and install the mods"
+  startup:
+    # Again on every start, in case the sandbox rewrote settings.json.
+    - command: ["sh", "-c", "HOME=/home/agent PATH=/home/agent/.local/bin:$PATH sh /home/agent/.claude/claude-config/setup.sh"]
+      description: "Re-merge settings"
