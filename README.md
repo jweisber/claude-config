@@ -14,7 +14,7 @@ An OpenCode-style look for the Claude Code terminal UI, in Catppuccin Mocha.
 Needs Claude Code, `python3` and `git`, plus a Nerd Font in the terminal.
 
 ```sh
-git clone https://github.com/<you>/claude-config ~/claude-config
+git clone https://github.com/jweisber/claude-config ~/claude-config
 ~/claude-config/install.sh
 ```
 
