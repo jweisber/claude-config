@@ -10,5 +10,9 @@
   "spinnerVerbs": {
     "mode": "replace",
     "verbs": ["Thinking"]
+  },
+  "enabledPlugins": {
+    "sidebar@local-mods": true,
+    "chat-frames@local-mods": true
   }
 }
