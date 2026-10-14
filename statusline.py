@@ -110,19 +110,38 @@ def item(value, label=None, color=None):
     return out + RESET
 
 
+def save_input(raw, session_id, home):
+    """Leave this session's input for the sidebar mod, which reads the prompt cache from it.
+
+    One file per session, since every running session (the agents view's too) runs this script.
+    """
+    if not session_id:
+        return
+    folder = os.path.join(os.environ.get("CLAUDE_CONFIG_DIR") or os.path.join(home, ".claude"), "statusline")
+    try:
+        os.makedirs(folder, exist_ok=True)
+        path = os.path.join(folder, session_id + ".json")
+        with open(path + ".tmp", "w") as f:
+            f.write(raw)
+        os.replace(path + ".tmp", path)
+        # Drop files of sessions not seen for a week.
+        cutoff = time.time() - 7 * 86400
+        for name in os.listdir(folder):
+            old = os.path.join(folder, name)
+            if os.path.getmtime(old) < cutoff:
+                os.remove(old)
+    except OSError:
+        pass
+
+
 def main():
     raw = sys.stdin.read()
     home = os.path.expanduser("~")
     try:
-        config = os.environ.get("CLAUDE_CONFIG_DIR") or os.path.join(home, ".claude")
-        with open(os.path.join(config, "statusline-last.json"), "w") as f:
-            f.write(raw)
-    except OSError:
-        pass
-    try:
         d = json.loads(raw)
     except ValueError:
         return
+    save_input(raw, d.get("session_id"), home)
 
     now = time.time()
     left, right = [], []

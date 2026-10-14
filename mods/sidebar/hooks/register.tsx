@@ -101,11 +101,11 @@ async function refreshUsage($: EngineInterface) {
   if (JSON.stringify(await read($, limits)) !== JSON.stringify(windows)) await update($, limits, () => windows)
 }
 
-// The prompt cache has no API of its own: the status line script leaves its
-// last input in the Claude config folder, and that carries the cache's expiry.
+// The prompt cache has no API of its own: the status line script leaves each
+// session's last input in the Claude config folder, and that carries the cache's expiry.
 async function refreshCache($: EngineInterface) {
   const dir = (await $.env.get('CLAUDE_CONFIG_DIR')) ?? `${await $.env.get('HOME')}/.claude`
-  const raw = await $.fs.read(`${dir}/statusline-last.json`).catch(() => null)
+  const raw = await $.fs.read(`${dir}/statusline/${await $.session.id()}.json`).catch(() => null)
   if (raw === null) return
   let found: Cache | null = null
   try {
