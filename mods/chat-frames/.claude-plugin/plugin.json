@@ -1,0 +1,5 @@
+{
+  "name": "chat-frames",
+  "version": "0.1.0",
+  "description": "OpenCode-style message panels: colored left bars for your prompts and Claude's replies"
+}

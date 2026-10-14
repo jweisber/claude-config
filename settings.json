@@ -1,0 +1,14 @@
+{
+  "theme": "custom:catppuccin-mocha",
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.py",
+    "padding": 0,
+    "refreshInterval": 2
+  },
+  "spinnerTipsEnabled": false,
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": ["Thinking"]
+  }
+}

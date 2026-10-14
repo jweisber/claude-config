@@ -1,0 +1,8 @@
+{
+  "name": "local-mods",
+  "owner": { "name": "Jonathan Weisberg" },
+  "plugins": [
+    { "name": "sidebar", "source": "./sidebar", "description": "OpenCode-style session sidebar: context, activity, edited files and to-dos" },
+    { "name": "chat-frames", "source": "./chat-frames", "description": "OpenCode-style transcript: framed prompts, indented replies, dots spinner" }
+  ]
+}
