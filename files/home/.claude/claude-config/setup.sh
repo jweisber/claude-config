@@ -11,6 +11,13 @@ HERE="$CONFIG/claude-config"
 exec >>"$HERE/setup.log" 2>&1
 echo "== $(date -u +%FT%TZ) ${1:-manual} uid=$(id -u) claude=$(command -v claude || echo none)"
 
+# The sandbox image's Claude Code can be too old for the mods, and it only
+# updates itself in the background, ready for the next session. Updating
+# here, before the first session starts, saves that restart.
+if [ "${1:-}" = install ]; then
+  timeout 300 claude update || echo "update failed; Claude Code will update itself later"
+fi
+
 python3 - "$HERE/settings.json" "$CONFIG/settings.json" "$CONFIG/mods" <<'PY'
 import json, os, sys
 

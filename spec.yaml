@@ -11,7 +11,7 @@ setup:
   install:
     - command: "HOME=/home/agent PATH=/home/agent/.local/bin:$PATH sh /home/agent/.claude/claude-config/setup.sh install"
       user: "1000"
-      description: "Merge settings and install the mods"
+      description: "Update Claude Code, merge settings and install the mods"
   startup:
     # Again on every start, in case the sandbox rewrote settings.json.
     - command: ["sh", "-c", "HOME=/home/agent PATH=/home/agent/.local/bin:$PATH sh /home/agent/.claude/claude-config/setup.sh startup"]
