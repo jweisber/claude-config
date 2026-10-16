@@ -10,6 +10,7 @@ Everything lives in `files/home/.claude/`, laid out as it lands in `~/.claude`:
   - `sidebar`: context, weekly limit and prompt cache, activity, modified files and to-dos. `/sidebar` toggles it; `/sidebar open` and `/sidebar close` also work.
   - `chat-frames`: framed prompts, indented replies, a braille spinner.
 - **Settings** (`claude-config/settings.json`): the theme, the status line, no spinner tips, and "Thinking" as the only spinner verb. `claude-config/setup.sh` merges them into `~/.claude/settings.json` without touching anything else, and installs the two mods.
+- **Skills**: [jstack](https://github.com/jweisber/jstack), installed from GitHub with marketplace auto-update on, so pushes to jstack reach existing sandboxes without recreating them. A pushed change loads in the next session, or after `/reload-plugins` once Claude Code reports the update.
 
 ## Install in a Docker sandbox
 

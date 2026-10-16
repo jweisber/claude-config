@@ -13,6 +13,16 @@
   },
   "enabledPlugins": {
     "sidebar@local-mods": true,
-    "chat-frames@local-mods": true
+    "chat-frames@local-mods": true,
+    "jstack@jstack": true
+  },
+  "extraKnownMarketplaces": {
+    "jstack": {
+      "source": { "source": "github", "repo": "jweisber/jstack" },
+      "autoUpdate": true
+    }
+  },
+  "env": {
+    "CLAUDE_CODE_PLUGIN_PREFER_HTTPS": "1"
   }
 }
